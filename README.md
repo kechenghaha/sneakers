@@ -1,13 +1,16 @@
 #球鞋管理
-#资料
-[Spring 文档](https://spring.io/guides)    
+#资料、工具
+[Spring 文档](https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#boot-features-embedded-database-support/)    
 [Spring Web](https://spring.io/guides/gs/serving-web-content/)
 [es](https://elasticsearch.cn/explore)  
 [Github deploy key](https://developer.github.com/v3/guides/managing-deploy-keys/#deploy-keys)
 [Bootstrap](https://v3.bootcss.com/getting-started/)    
 [Github OAuth](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)   
-#工具
+[thymeleaf文档](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#setting-attribute-values)  
+[maven仓库](https://mvnrepository.com/artifact/com.alibaba/) 
+[jquery下载版本](http://www.jq22.com/jquery-info122/)  
 [Git](https://git-scm.com/download) 
 [Okhttp](https://square.github.io/okhttp/)
 [Fastjson](https://mvnrepository.com/artifact/com.alibaba/fastjson)
-()
+[Project Lombok](https://projectlombok.org/setup/maven)
+[mybatis-spring-boot](http://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/)

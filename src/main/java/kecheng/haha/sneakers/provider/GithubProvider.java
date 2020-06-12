@@ -6,6 +6,8 @@ import kecheng.haha.sneakers.dto.GithubUser;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+
 
 /**
  * by kecheng
@@ -25,7 +27,7 @@ public class GithubProvider {
             String string = response.body().string();
             String token = string.split("&")[0].split("=")[1];
             return token;
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
@@ -41,7 +43,7 @@ public class GithubProvider {
             String string = response.body().string();
             GithubUser githubUser = JSON.parseObject(string, GithubUser.class);
             return githubUser;
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
