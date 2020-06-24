@@ -14,3 +14,4 @@
 [Fastjson](https://mvnrepository.com/artifact/com.alibaba/fastjson)
 [Project Lombok](https://projectlombok.org/setup/maven)
 [mybatis-spring-boot](http://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/)
+[flyway](https://flywaydb.org/getstarted/firststeps/maven)
