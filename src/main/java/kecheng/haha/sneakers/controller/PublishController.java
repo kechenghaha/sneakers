@@ -40,16 +40,17 @@ public class PublishController {
 
         User user = null;
         Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("token")) {
-                String token = cookie.getValue();
-                user = userMapper.findByToken(token);
-                if (user != null) {
-                    request.getSession().setAttribute("user", user);
+        if (cookies != null && cookies.length != 0)
+            for (Cookie cookie : cookies)
+                if (cookie.getName().equals("token")) {
+                    String token = cookie.getValue();
+                    user = userMapper.findByToken(token);
+                    if (user != null) {
+                        request.getSession().setAttribute("user", user);
+                    }
+                    break;
                 }
-                break;
-            }
-        }
+
         if (user == null) {
             model.addAttribute("error", "用户未登录");
             return "publish";
@@ -59,15 +60,15 @@ public class PublishController {
         model.addAttribute("description", description);
         model.addAttribute("tag", tag);
         if (title == null || title == "") {
-            model.addAttribute("error","标题不能为空" );
+            model.addAttribute("error", "标题不能为空");
             return "publish";
         }
         if (description == null || description == "") {
-            model.addAttribute("error","描述不能为空" );
+            model.addAttribute("error", "描述不能为空");
             return "publish";
         }
         if (tag == null || tag == "") {
-            model.addAttribute("error","标签不能为空" );
+            model.addAttribute("error", "标签不能为空");
             return "publish";
         }
 
