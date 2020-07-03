@@ -25,19 +25,56 @@ public class InformationService {
     private InformationMapper informationMapper;
 
     public PaginationDTO list(Integer page, Integer size) {
-
+        Integer totalPage;
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalCount = informationMapper.count();
-        paginationDTO.setPagination(totalCount, page, size);
+        if (totalCount % size == 0) {
+            totalPage = totalCount / size;
+        } else {
+            totalPage = totalCount / size + 1;
+        }
         if (page < 1) {
             page = 1;
         }
-        if (page > paginationDTO.getTotalPage()) {
-            page = paginationDTO.getTotalPage();
+        if (page > totalPage) {
+            page = totalPage;
         }
+        paginationDTO.setPagination(totalPage, page);
 
         Integer offset = size * (page - 1);
         List<Information> informationList = informationMapper.list(offset, size);
+        List<InformationDTO> informationDTOList = new ArrayList<>();
+        for (Information information : informationList) {
+            User user = userMapper.findById(information.getCreator());
+            InformationDTO informationDTO = new InformationDTO();
+            BeanUtils.copyProperties(information, informationDTO);
+            informationDTO.setUser(user);
+            informationDTOList.add(informationDTO);
+        }
+        paginationDTO.setInformationDTOList(informationDTOList);
+
+        return paginationDTO;
+    }
+
+    public PaginationDTO list(Integer userId, Integer page, Integer size) {
+        Integer totalPage;
+        PaginationDTO paginationDTO = new PaginationDTO();
+        Integer totalCount = informationMapper.countByUserId(userId);
+        if (totalCount % size == 0) {
+            totalPage = totalCount / size;
+        } else {
+            totalPage = totalCount / size + 1;
+        }
+        if (page < 1) {
+            page = 1;
+        }
+        if (page > totalPage) {
+            page = totalPage;
+        }
+        paginationDTO.setPagination(totalPage, page);
+
+        Integer offset = size * (page - 1);
+        List<Information> informationList = informationMapper.listByUserId(userId, offset, size);
         List<InformationDTO> informationDTOList = new ArrayList<>();
         for (Information information : informationList) {
             User user = userMapper.findById(information.getCreator());

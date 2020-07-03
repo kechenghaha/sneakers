@@ -18,4 +18,10 @@ public interface InformationMapper {
 
     @Select("select count(1) from information")
     Integer count();
+
+    @Select("select * from information where creator = #{userId} limit #{offset},#{size} ")
+    List<Information> listByUserId(@Param(value = "userId") Integer userId, @Param(value = "offset") Integer offset, @Param(value = "size") Integer size);
+
+    @Select("select count(1) from information where creator = #{userId}")
+    Integer countByUserId(@Param(value = "userId") Integer userId);
 }

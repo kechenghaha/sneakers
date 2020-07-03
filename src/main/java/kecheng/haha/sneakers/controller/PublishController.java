@@ -32,15 +32,15 @@ public class PublishController {
 
     @PostMapping("/publish")
     public String doPublish(
-            @RequestParam("title") String title,
-            @RequestParam("description") String description,
-            @RequestParam("tag") String tag,
+            @RequestParam(value = "title") String title,
+            @RequestParam(value = "description") String description,
+            @RequestParam(value = "tag") String tag,
             HttpServletRequest request,
             Model model) {
 
         User user = null;
         Cookie[] cookies = request.getCookies();
-        if (cookies != null && cookies.length != 0)
+        if (cookies != null && cookies.length != 0) {
             for (Cookie cookie : cookies)
                 if (cookie.getName().equals("token")) {
                     String token = cookie.getValue();
@@ -50,6 +50,7 @@ public class PublishController {
                     }
                     break;
                 }
+        }
 
         if (user == null) {
             model.addAttribute("error", "用户未登录");
